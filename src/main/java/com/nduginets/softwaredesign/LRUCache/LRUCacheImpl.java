@@ -8,19 +8,17 @@ import java.util.Objects;
 
 public class LRUCacheImpl<K, V> implements LRUCache<K, V> {
 
-    private final Map<K, ListNode<K, V>> keyMap;
-    private final int maxSize;
-    private ListNode<K, V> headNode = new ListNode<>();
-    private ListNode<K, V> tailNode = new ListNode<>();
+    private final Map<K, Node<K, V>> keyMap;
+    private final int maxCacheSize;
+    private Node<K, V> headNode = new Node<>();
+    private Node<K, V> tailNode = new Node<>();
 
     public LRUCacheImpl(int size) {
+        assert size > 0;
         keyMap = new HashMap<>(size);
-        headNode.next = null;
         headNode.previous = tailNode;
-
         tailNode.next = headNode;
-        tailNode.previous = null;
-        this.maxSize = size;
+        this.maxCacheSize = size;
     }
 
     @Override
@@ -29,25 +27,18 @@ public class LRUCacheImpl<K, V> implements LRUCache<K, V> {
         assert value != null;
         int oldSize = size();
 
-        if (keyMap.containsKey(key)) {
-            pop(key);
-        }
+        pop(key);
 
-        if (keyMap.size() == maxSize) {
-            ListNode<K, V> removedNode = tailNode.next;
+        if (keyMap.size() == maxCacheSize) {
+            Node<K, V> removedNode = tailNode.next;
             removedNode.next.previous = tailNode;
             tailNode.next = removedNode.next;
             keyMap.remove(removedNode.key);
         }
 
-        ListNode<K, V> newNode = new ListNode<>(key, value);
+        Node<K, V> newNode = new Node<>(key, value);
         keyMap.put(key, newNode);
-
-        ListNode<K, V> youngestNode = headNode.previous;
-        newNode.next = headNode;
-        newNode.previous = youngestNode;
-        youngestNode.next = newNode;
-        headNode.previous = newNode;
+        moveToHead(newNode);
 
         assert oldSize <= size();
         assert key.equals(headNode.previous.key);
@@ -61,20 +52,14 @@ public class LRUCacheImpl<K, V> implements LRUCache<K, V> {
         if (!keyMap.containsKey(key)) {
             return null;
         }
-        ListNode<K, V> updatedNode = keyMap.get(key);
-        ListNode<K, V> previousNode = updatedNode.previous;
-        ListNode<K, V> nextNode = updatedNode.next;
 
-        nextNode.previous = previousNode;
-        previousNode.next = nextNode;
-
-        ListNode<K, V> headPrevOld = headNode.previous;
-        headNode.previous = updatedNode;
-        updatedNode.previous = headPrevOld;
-        headPrevOld.next = updatedNode;
+        Node<K, V> updatedNode = keyMap.get(key);
+        mergeNeighbours(updatedNode);
+        moveToHead(updatedNode);
 
         assert oldSize == size();
         assert key.equals(headNode.previous.key);
+        assert updatedNode.value != null;
         assert updatedNode.value.equals(headNode.previous.value);
         return updatedNode.value;
     }
@@ -86,11 +71,9 @@ public class LRUCacheImpl<K, V> implements LRUCache<K, V> {
         if (!keyMap.containsKey(key)) {
             return null;
         }
-        ListNode<K, V> updatedNode = keyMap.get(key);
-        ListNode<K, V> previousNode = updatedNode.previous;
-        ListNode<K, V> nextNode = updatedNode.next;
-        nextNode.previous = previousNode;
-        previousNode.next = nextNode;
+
+        Node<K, V> updatedNode = keyMap.get(key);
+        mergeNeighbours(updatedNode);
         keyMap.remove(key);
 
         assert !key.equals(headNode.previous.key);
@@ -100,27 +83,38 @@ public class LRUCacheImpl<K, V> implements LRUCache<K, V> {
 
     @Override
     public int size() {
-        assert keyMap.size() <= maxSize;
+        assert keyMap.size() <= maxCacheSize;
         return keyMap.size();
     }
 
+    private void moveToHead(Node<K, V> movedNode) {
+        Node<K, V> previousHeadNode = headNode.previous;
+        headNode.previous = movedNode;
+        movedNode.previous = previousHeadNode;
+        movedNode.next = headNode;
+        previousHeadNode.next = movedNode;
+    }
 
-    private static final class ListNode<K, V> {
+    private void mergeNeighbours(Node<K, V> currentNode) {
+        Node<K, V> previousNode = currentNode.previous;
+        Node<K, V> nextNode = currentNode.next;
+        nextNode.previous = previousNode;
+        previousNode.next = nextNode;
+    }
+
+    private static final class Node<K, V> {
         private final K key;
         private final V value;
-        private final boolean isBorder;
 
-        private ListNode<K, V> previous = null;
-        private ListNode<K, V> next = null;
+        private Node<K, V> previous = null;
+        private Node<K, V> next = null;
 
-        private ListNode(K key, V value) {
-            isBorder = false;
+        private Node(K key, V value) {
             this.key = key;
             this.value = value;
         }
 
-        private ListNode() {
-            isBorder = true;
+        private Node() {
             this.key = null;
             this.value = null;
 
@@ -130,11 +124,9 @@ public class LRUCacheImpl<K, V> implements LRUCache<K, V> {
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
-            ListNode<?, ?> listNode = (ListNode<?, ?>) o;
-            return Objects.equals(key, listNode.key) &&
-                    Objects.equals(value, listNode.value) &&
-                    Objects.equals(previous, listNode.previous) &&
-                    Objects.equals(next, listNode.next);
+            Node<?, ?> Node = (Node<?, ?>) o;
+            return Objects.equals(key, Node.key) &&
+                    Objects.equals(value, Node.value);
         }
 
         @Override
@@ -145,9 +137,9 @@ public class LRUCacheImpl<K, V> implements LRUCache<K, V> {
         @Override
         public String toString() {
             if (key == null) {
-                return "ListNode{NULL}";
+                return "Node{NULL}";
             }
-            return "ListNode{" +
+            return "Node{" +
                     "key=" + key +
                     ", value=" + value +
                     '}';

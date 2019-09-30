@@ -21,7 +21,6 @@ class LRUCacheTest {
         cache = new LRUCacheImpl<>(cacheSize);
     }
 
-
     @Test
     void simpleAddTest() {
         for (int i = 0; i < cacheSize * 2; i++) {
@@ -30,7 +29,6 @@ class LRUCacheTest {
         }
         Assertions.assertEquals(cacheSize, cache.size());
     }
-
 
     @ParameterizedTest
     @ValueSource(ints = {2, 3, 5, 15})
@@ -60,7 +58,6 @@ class LRUCacheTest {
 
     }
 
-
     @Test
     void simpleRemoveItemTest() {
         for (int i = 0; i < cacheSize + 1; i++) {
@@ -79,6 +76,12 @@ class LRUCacheTest {
     @MethodSource("nullArguments")
     void nullableArgumentsTest(Integer key, String value) {
         Assertions.assertThrows(AssertionError.class, () -> cache.push(key, value));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 0})
+    void wrongArgumentConstructorTest(int size) {
+        Assertions.assertThrows(AssertionError.class, () -> new LRUCacheImpl<String, String>(size));
     }
 
     private static Stream<Arguments> nullArguments() {
