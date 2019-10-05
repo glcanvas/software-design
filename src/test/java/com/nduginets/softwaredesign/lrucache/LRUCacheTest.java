@@ -1,4 +1,4 @@
-package com.nduginets.softwaredesign.LRUCache;
+package com.nduginets.softwaredesign.lrucache;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

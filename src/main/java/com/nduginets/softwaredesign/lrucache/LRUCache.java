@@ -1,4 +1,4 @@
-package com.nduginets.softwaredesign.LRUCache;
+package com.nduginets.softwaredesign.lrucache;
 
 import com.sun.istack.internal.NotNull;
 
@@ -8,7 +8,7 @@ public interface LRUCache<K, V> {
      * pre: k != null && value != null
      * <p>
      * post:
-     * firstElement(LRUCache) == (k, v) && @old size() <= size()
+     * firstElement(lrucache) == (k, v) && @old size() <= size()
      */
     void push(@NotNull K key, @NotNull V value);
 
@@ -16,7 +16,7 @@ public interface LRUCache<K, V> {
      * pre: key != null
      * <p>
      * post:
-     * result == any && old size() == size() && firstElement(LRUCache) == (k, v)
+     * result == any && old size() == size() && firstElement(lrucache) == (k, v)
      */
     V take(K key);
 
@@ -24,7 +24,7 @@ public interface LRUCache<K, V> {
      * pre: key != null
      * <p>
      * post:
-     * result == any && @old size() >= size() && firstElement(LRUCache) != (k, v)
+     * result == any && @old size() >= size() && firstElement(lrucache) != (k, v)
      */
     V pop(K key);
 

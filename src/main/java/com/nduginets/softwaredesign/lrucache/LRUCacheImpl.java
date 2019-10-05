@@ -1,4 +1,4 @@
-package com.nduginets.softwaredesign.LRUCache;
+package com.nduginets.softwaredesign.lrucache;
 
 import com.sun.istack.internal.NotNull;
 
