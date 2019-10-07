@@ -42,7 +42,11 @@ public class Histogram {
 
     @Override
     public String toString() {
-        List<String> array = IntStream.range(1, times).boxed().map(t -> String.format("[t%d:c%d]", t, values.get(t))).collect(Collectors.toList());
+        List<String> array = IntStream
+                .range(1, times)
+                .boxed()
+                .map(t -> String.format("[t%d:c%d]", t, values.get(t)))
+                .collect(Collectors.toList());
         return "Histogram{" +
                 "name='" + name + '\'' +
                 ", values=" + String.join(",", array) +
