@@ -1,7 +1,7 @@
 package com.nduginets.softwaredesign.refactoring.servlet;
 
 import com.nduginets.softwaredesign.refactoring.DatabaseRequest;
-import com.nduginets.softwaredesign.refactoring.HttpResponse;
+import com.nduginets.softwaredesign.refactoring.HttpResponseHandler;
 
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,9 +22,9 @@ public class GetProductsServlet extends AbstractDatabaseServlet {
         try {
             result = LIST_PROCESSED.apply(databaseRequest.getProducts());
         } catch (Exception e) {
-            HttpResponse.errorResponse(response, "Can't get products");
+            HttpResponseHandler.errorResponse(response, "Can't get products");
             return;
         }
-        HttpResponse.okResponse(response, HttpResponse.CREATE_HTML_FROM_S.apply(result));
+        HttpResponseHandler.okResponse(response, HttpResponseHandler.CREATE_HTML_FROM_S.apply(result));
     }
 }

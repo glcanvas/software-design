@@ -31,30 +31,80 @@ public class ServerTest {
 
     @Test
     public void createProductTest() {
-        Response response = createProduct("a", 1);
+        Response response;
+        String body;
+        response = createProduct("a", 1);
         Assertions.assertEquals(201, response.getStatus());
+        body = response.readEntity(String.class);
+        Assertions.assertEquals("OK", body.trim());
         response.close();
 
-        createProduct("b", 2);
+        response = createProduct("b", 2);
         Assertions.assertEquals(201, response.getStatus());
+        body = response.readEntity(String.class);
+        Assertions.assertEquals("OK", body.trim());
         response.close();
     }
 
     @Test
     public void getProductsTest() {
-        Response response = createProduct("a", 1);
+        Response response;
+        String body;
+
+        response = createProduct("a", 1);
+        Assertions.assertEquals(201, response.getStatus());
+        response.close();
+
+
+        response = createProduct("b", 2);
         Assertions.assertEquals(201, response.getStatus());
         response.close();
 
         response = getProducts();
         Assertions.assertEquals(200, response.getStatus());
-        System.err.println(response.readEntity(String.class));
+        body = response.readEntity(String.class);
+        Assertions.assertTrue(body.contains("a\t1"));
+        Assertions.assertTrue(body.contains("b\t2"));
+        response.close();
+    }
+
+    @Test
+    public void queryTest() {
+        Response response;
+        String body;
+
+        response = createProduct("a", 1);
+        Assertions.assertEquals(201, response.getStatus());
+        response.close();
+
+        response = createProduct("b", 2);
+        Assertions.assertEquals(201, response.getStatus());
         response.close();
 
         response = getStatistics("count");
         Assertions.assertEquals(200, response.getStatus());
-        System.err.println(response.readEntity(String.class));
+        body = response.readEntity(String.class);
+        Assertions.assertTrue(body.contains("2"));
         response.close();
+
+        response = getStatistics("sum");
+        Assertions.assertEquals(200, response.getStatus());
+        body = response.readEntity(String.class);
+        Assertions.assertTrue(body.contains("3"));
+        response.close();
+
+        response = getStatistics("max");
+        Assertions.assertEquals(200, response.getStatus());
+        body = response.readEntity(String.class);
+        Assertions.assertTrue(body.contains("b\t2"));
+        response.close();
+
+        response = getStatistics("min");
+        Assertions.assertEquals(200, response.getStatus());
+        body = response.readEntity(String.class);
+        Assertions.assertTrue(body.contains("a\t1"));
+        response.close();
+
     }
 
     private Response createProduct(String name, long price) {

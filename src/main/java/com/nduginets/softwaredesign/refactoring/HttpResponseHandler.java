@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.function.Function;
 
-public class HttpResponse {
+public class HttpResponseHandler {
     public static final Function<String, String> CREATE_HTML_FROM_S = values -> String.format("<html><body>\n%s\n</body></html>", values);
 
     public static final Function<StringBuilder, String> CREATE_HTML_FROM_SB = stringBuilder -> CREATE_HTML_FROM_S.apply(stringBuilder.toString());

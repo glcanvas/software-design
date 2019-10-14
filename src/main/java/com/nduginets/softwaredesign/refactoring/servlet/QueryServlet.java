@@ -1,14 +1,11 @@
 package com.nduginets.softwaredesign.refactoring.servlet;
 
 import com.nduginets.softwaredesign.refactoring.DatabaseRequest;
-import com.nduginets.softwaredesign.refactoring.HttpResponse;
-import com.nduginets.softwaredesign.refactoring.Product;
+import com.nduginets.softwaredesign.refactoring.HttpResponseHandler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.*;
-import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -34,7 +31,7 @@ public class QueryServlet extends AbstractDatabaseServlet {
         } else if ("count".equals(command)) {
             executeCommand(command, "Product count: ", databaseRequest::countProduct, SINGLE_PROCESSED, response);
         } else {
-            HttpResponse.badRequestResponse(response, "Command: " + command + " not recognized");
+            HttpResponseHandler.badRequestResponse(response, "Command: " + command + " not recognized");
         }
     }
 
@@ -46,9 +43,9 @@ public class QueryServlet extends AbstractDatabaseServlet {
         try {
             sb.append(resultSetProcessed.apply(dbRequest.get()));
         } catch (RuntimeException e) {
-            HttpResponse.errorResponse(response, "Can't execute: " + cmd);
+            HttpResponseHandler.errorResponse(response, "Can't execute: " + cmd);
         }
-        String body = HttpResponse.CREATE_HTML_FROM_SB.apply(sb);
-        HttpResponse.okResponse(response, body);
+        String body = HttpResponseHandler.CREATE_HTML_FROM_SB.apply(sb);
+        HttpResponseHandler.okResponse(response, body);
     }
 }
