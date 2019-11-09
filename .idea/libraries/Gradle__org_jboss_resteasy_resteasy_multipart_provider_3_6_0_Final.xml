@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jboss.resteasy:resteasy-multipart-provider:3.6.0.Final">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jboss.resteasy/resteasy-multipart-provider/3.6.0.Final/cbdec272bcaa382ec8d18887d5d43f0946dea346/resteasy-multipart-provider-3.6.0.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jboss.resteasy/resteasy-multipart-provider/3.6.0.Final/adeb526de959ae82419b78356c4d263aebb0469e/resteasy-multipart-provider-3.6.0.Final-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

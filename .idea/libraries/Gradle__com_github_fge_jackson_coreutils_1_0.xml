@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.fge:jackson-coreutils:1.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.fge/jackson-coreutils/1.0/a0215d085a7646dde5abf34c1d12c1aa820dbefa/jackson-coreutils-1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.fge/jackson-coreutils/1.0/a780dc4ff5b933a870757367f51d5508698fc7e0/jackson-coreutils-1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

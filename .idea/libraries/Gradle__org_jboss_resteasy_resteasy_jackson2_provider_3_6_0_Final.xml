@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jboss.resteasy:resteasy-jackson2-provider:3.6.0.Final">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jboss.resteasy/resteasy-jackson2-provider/3.6.0.Final/7064f71fdce29aa34560c77b9112da149a8f90f5/resteasy-jackson2-provider-3.6.0.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jboss.resteasy/resteasy-jackson2-provider/3.6.0.Final/73c3499df47790f1a1fe71097e58d889f9c378cf/resteasy-jackson2-provider-3.6.0.Final-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

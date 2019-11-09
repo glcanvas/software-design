@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jboss.resteasy:resteasy-validator-provider-11:3.6.0.Final">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jboss.resteasy/resteasy-validator-provider-11/3.6.0.Final/fd7c006e409127ed6ef06a8da8d8a875f0aa5c7f/resteasy-validator-provider-11-3.6.0.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jboss.resteasy/resteasy-validator-provider-11/3.6.0.Final/8cef8e7cf5b49d6e4abdf0e7e134135fccec193c/resteasy-validator-provider-11-3.6.0.Final-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
