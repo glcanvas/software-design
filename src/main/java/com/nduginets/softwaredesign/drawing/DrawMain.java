@@ -10,6 +10,7 @@ import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class DrawMain {
 
@@ -26,12 +27,15 @@ public class DrawMain {
 
         AbstractGraph g = new MatrixGraph(m);
         AbstractGraph g2 = new ListGraph(edges);
-        /*FxDrawingApi.setSize(400, 600);
-        FxDrawingApi.setGraph(g);
-        Application.launch(FxDrawingApi.class);
-*/
-        AwtDrawingApi awt = new AwtDrawingApi(400, 600);
 
-        awt.show(g2);
+        Scanner scanner = new Scanner(System.in);
+        if ("fx".equals(scanner.next())) {
+            FxDrawingApi.setSize(400, 600);
+            FxDrawingApi.setGraph(g);
+            Application.launch(FxDrawingApi.class);
+        } else {
+            AwtDrawingApi awt = new AwtDrawingApi(400, 600);
+            awt.show(g2);
+        }
     }
 }
