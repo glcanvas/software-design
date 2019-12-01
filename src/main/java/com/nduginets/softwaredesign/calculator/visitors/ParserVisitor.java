@@ -30,6 +30,7 @@ public class ParserVisitor implements TokenVisitor {
                     if (lastToken instanceof OperationToken) {
                         numbers.add(lastToken);
                         operations.pop();
+                        continue;
                     }
                     throw new IllegalStateException("Wrong order");
                 }
