@@ -3,7 +3,9 @@ package com.nduginets.softwaredesign.drawing.draw;
 import com.nduginets.softwaredesign.drawing.DrawGraph;
 import com.nduginets.softwaredesign.drawing.graph.AbstractGraph;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Frame;
+import java.awt.Graphics;
 
 public class AwtDrawingApi extends Frame implements DrawingApi {
 

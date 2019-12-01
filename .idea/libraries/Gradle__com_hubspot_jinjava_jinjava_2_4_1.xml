@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.hubspot.jinjava:jinjava:2.4.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.hubspot.jinjava/jinjava/2.4.1/8c4bfe0682247c2aa4b4340fbc981496a16f7b6f/jinjava-2.4.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.hubspot.jinjava/jinjava/2.4.1/4c617ee7e017b7c643f5f0d81bf78b6ef8f4e32/jinjava-2.4.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

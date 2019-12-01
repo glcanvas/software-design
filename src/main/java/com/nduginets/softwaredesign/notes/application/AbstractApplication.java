@@ -1,10 +1,15 @@
 package com.nduginets.softwaredesign.notes.application;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicReference;
+//import org.jboss.resteasy.plugins.providers.html.Redirect;
+
+
 
 public abstract class AbstractApplication implements Application {
     private static final int TIMEOUT_SECONDS = 10;
@@ -78,4 +83,14 @@ public abstract class AbstractApplication implements Application {
         }
         terminateFuture.complete(null);
     }
+
+    /*
+    public Set<Class<?>> getClasses() {
+        Set<Class<?>> myServices = new HashSet<Class<?>>();
+
+        // Add Htmleasy Providers
+        //myServices.addAll(Htmleas.getClasses());
+
+        return myServices;
+    }*/
 }

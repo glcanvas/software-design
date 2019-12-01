@@ -23,7 +23,7 @@ dependencies {
     compile group: 'org.jboss.resteasy', name: 'resteasy-jackson2-provider', version: '3.6.0.Final'
     compile group: 'org.jboss.resteasy', name: 'resteasy-client', version: '3.6.0.Final'
     compile group: 'org.jboss.resteasy', name: 'resteasy-multipart-provider', version: '3.6.0.Final'
-    
+    compile group: 'com.hubspot.jinjava', name: 'jinjava', version: '2.4.1'
     compile group: 'org.jooq', name: 'jooq', version: '3.12.1'
 
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'

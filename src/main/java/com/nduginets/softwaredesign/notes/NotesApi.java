@@ -7,13 +7,22 @@ import javafx.util.Pair;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+
+
 @Path("/api/v1/notes")
-@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+@Consumes({MediaType.APPLICATION_JSON})
+@Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_HTML})
 public class NotesApi implements RestApi {
 
     private final NotesServer server;
@@ -70,5 +79,10 @@ public class NotesApi implements RestApi {
     public Response deleteNoteList(@QueryParam("id") @NotNull Integer id) {
         server.deleteNoteList(id);
         return Response.ok().build();
+    }
+
+    @GET
+    public String index() {
+        return server.renderIndexPage();
     }
 }

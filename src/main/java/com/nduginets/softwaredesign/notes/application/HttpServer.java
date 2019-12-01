@@ -28,6 +28,7 @@ public class HttpServer extends AbstractApplication {
     public void onStart() throws Exception {
         BasicConfigurator.configure();
         VertxResteasyDeployment deployment = new VertxResteasyDeployment();
+
         deployment.start();
         for (RestApi server : servers) {
             deployment.getRegistry().addSingletonResource(server);

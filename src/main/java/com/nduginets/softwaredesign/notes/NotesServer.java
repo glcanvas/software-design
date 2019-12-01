@@ -1,5 +1,6 @@
 package com.nduginets.softwaredesign.notes;
 
+import com.hubspot.jinjava.Jinjava;
 import com.nduginets.softwaredesign.notes.application.RestApi;
 import com.nduginets.softwaredesign.notes.data.Note;
 import com.nduginets.softwaredesign.notes.data.NoteDao;
@@ -8,8 +9,7 @@ import javafx.util.Pair;
 import org.jooq.DSLContext;
 
 import javax.ws.rs.core.Response;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class NotesServer {
 
@@ -56,6 +56,14 @@ public class NotesServer {
 
     public void deleteNoteList(int idNoteList) {
         dao.deleteNodeList(idNoteList);
+    }
+
+
+    public String renderIndexPage() {
+        Jinjava jinjava = new Jinjava();
+        Map<String, Object> elements = new HashMap<>();
+        elements.put("notes", this.getNotes());
+        return jinjava.render(NotesApplication.INDEX_TEMPLATE, elements);
     }
 
 }

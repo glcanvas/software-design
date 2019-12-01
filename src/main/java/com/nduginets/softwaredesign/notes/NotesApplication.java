@@ -1,14 +1,28 @@
 package com.nduginets.softwaredesign.notes;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Resources;
 import com.nduginets.softwaredesign.notes.application.HttpServer;
 import com.nduginets.softwaredesign.notes.application.RestApi;
+import com.nduginets.softwaredesign.notes.data.NoteDao;
 import org.jooq.DSLContext;
 
+import java.io.IOException;
 import java.util.Properties;
 import java.util.Scanner;
 import java.util.concurrent.CompletableFuture;
 
 public class NotesApplication {
+
+    public static final String INDEX_TEMPLATE;
+
+    static {
+        try {
+            INDEX_TEMPLATE = Resources.toString(Resources.getResource("template/index.html"), Charsets.UTF_8);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static void main(String[] args) {
 
@@ -16,6 +30,12 @@ public class NotesApplication {
         p.setProperty("host", "localhost");
         p.setProperty("port", "8080");
         p.setProperty("jdbc", "jdbc:sqlite:test.db");
+
+
+        DSLContext db = DslHolder.createDB(p.getProperty("jdbc"));
+
+        NoteDao dao = new NoteDao(db);
+        dao.createSchema();
 
         NotesApplication application = new NotesApplication(p);
 

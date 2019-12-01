@@ -1,0 +1,44 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+    <title>Add question</title>
+</head>
+<br>
+<h1>NOTES</h1>
+<ul>
+    {% for row in notes %}
+    <li>
+        Name: {{row['name']}}
+        </br>
+        Desc : {{row['description']}}
+        </br>
+        Done: {{row['done']}}
+    </li>
+    {% endfor %}
+</ul>
+
+<h1>Create note</h1>
+
+
+<label for="name">name</label><input type="text" id="name">
+</br>
+<label for="description">description</label><input type="text" id="description">
+</br>
+<label for="done">done</label><input type="checkbox" id="done" name="dones">
+</br>
+<button id="send" onclick="sendPost()">SEND</button>
+</body>
+<script>
+    function sendPost() {
+        var xhttp = new XMLHttpRequest();
+        var name = document.getElementById("name").value;
+        var descriprion = document.getElementById("description").value;
+        var done = document.getElementById("done").checked ? 'true' : 'false';
+        xhttp.open("POST", "notes/note", true);
+        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        console.log(JSON.stringify({'name': name, 'description': descriprion, 'done': done}));
+        xhttp.send(JSON.stringify({'name': name, 'description': descriprion, 'done': done}));
+
+    }
+</script>
+</html>

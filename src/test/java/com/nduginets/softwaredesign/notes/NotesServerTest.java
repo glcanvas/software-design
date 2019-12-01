@@ -32,7 +32,7 @@ public class NotesServerTest {
         Properties p = new Properties();
         p.setProperty("host", "localhost");
         p.setProperty("port", "8080");
-        p.setProperty("jdbc", "jdbc:sqlite:test.db");
+        p.setProperty("jdbc", "jdbc:sqlite:test1.db");
 
         DSLContext db = DslHolder.createDB(p.getProperty("jdbc"));
 
