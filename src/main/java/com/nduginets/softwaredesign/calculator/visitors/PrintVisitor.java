@@ -7,17 +7,17 @@ import com.nduginets.softwaredesign.calculator.tokens.OperationToken;
 public class PrintVisitor implements TokenVisitor {
 
     @Override
-    public void visit(BracketToken token) {
+    public void acceptToken(BracketToken token) {
         System.out.print(token.textRepresentation() + " ");
     }
 
     @Override
-    public void visit(NumberToken token) {
+    public void acceptToken(NumberToken token) {
         System.out.printf("Number: %s ", token.textRepresentation());
     }
 
     @Override
-    public void visit(OperationToken token) {
+    public void acceptToken(OperationToken token) {
         System.out.printf("Operation: %s ", token.textRepresentation());
     }
 

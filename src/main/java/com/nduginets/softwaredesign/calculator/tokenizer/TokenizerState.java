@@ -2,9 +2,10 @@ package com.nduginets.softwaredesign.calculator.tokenizer;
 
 public interface TokenizerState {
 
-    void process(Tokenizer tokenizer, char c);
-
-    default void endProcessing(Tokenizer tokenizer) {
+    default void startProcessing(Tokenizer tokenizer, char c) {
+        throw new IllegalStateException("Not implemented");
     }
+
+    default void endProcessing(Tokenizer tokenizer) {}
 }
 

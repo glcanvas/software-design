@@ -4,9 +4,9 @@ import com.nduginets.softwaredesign.calculator.tokens.LeftBracketToken;
 import com.nduginets.softwaredesign.calculator.tokens.OperationToken;
 import com.nduginets.softwaredesign.calculator.tokens.RightBracketToken;
 
-public class StartTokenizerState implements TokenizerState {
+class SymbolTokenizerState implements TokenizerState {
     @Override
-    public void process(Tokenizer tokenizer, char c) {
+    public void startProcessing(Tokenizer tokenizer, char c) {
         switch (c) {
             case '(':
                 tokenizer.getTokens().add(new LeftBracketToken());
@@ -34,7 +34,7 @@ public class StartTokenizerState implements TokenizerState {
 
         if(Character.isDigit(c)) {
          tokenizer.setState(new NumberTokenizerState());
-         tokenizer.process(c);
+         tokenizer.processCharacter(c);
          return;
         }
 

@@ -1,7 +1,5 @@
 package com.nduginets.softwaredesign.calculator.tokens;
 
-import com.nduginets.softwaredesign.calculator.visitors.TokenVisitor;
-
 import java.util.function.BiFunction;
 
 public class OperationToken implements Token {
@@ -14,11 +12,6 @@ public class OperationToken implements Token {
         this.priority = priority;
         this.operation = operation;
         this.textOperation = textOperation;
-    }
-
-    @Override
-    public void accept(TokenVisitor visitor) {
-        visitor.visit(this);
     }
 
     public String textRepresentation() {

@@ -8,15 +8,24 @@ import com.nduginets.softwaredesign.calculator.tokens.Token;
 import java.util.List;
 
 public interface TokenVisitor {
-    void visit(BracketToken token);
+    void acceptToken(BracketToken token);
 
-    void visit(NumberToken token);
+    void acceptToken(NumberToken token);
 
-    void visit(OperationToken token);
+    void acceptToken(OperationToken token);
 
-    default void visit(List<Token> tokens) {
-        for(Token t: tokens) {
-            t.accept(this);
+    default void iterateOverTokens(List<Token> tokens) {
+        for (Token t : tokens) {
+            if (t instanceof BracketToken) {
+                acceptToken((BracketToken) t);
+            }
+            if (t instanceof NumberToken) {
+                acceptToken((NumberToken) t);
+            }
+            if (t instanceof OperationToken) {
+                acceptToken((OperationToken) t);
+            }
         }
+
     }
 }

@@ -15,7 +15,7 @@ public class ParserVisitor implements TokenVisitor {
     private final List<Token> numbers = new ArrayList<>();
 
     @Override
-    public void visit(BracketToken token) {
+    public void acceptToken(BracketToken token) {
         switch (token.getType()) {
             case OPEN:
                 operations.add(token);
@@ -39,12 +39,12 @@ public class ParserVisitor implements TokenVisitor {
     }
 
     @Override
-    public void visit(NumberToken token) {
+    public void acceptToken(NumberToken token) {
         numbers.add(token);
     }
 
     @Override
-    public void visit(OperationToken token) {
+    public void acceptToken(OperationToken token) {
         while (!operations.isEmpty()) {
             Token lastToken = operations.peek();
             if (lastToken instanceof OperationToken && token.getPriority() <= ((OperationToken) lastToken).getPriority()) {
@@ -57,7 +57,7 @@ public class ParserVisitor implements TokenVisitor {
         operations.add(token);
     }
 
-    public List<Token> tokens() {
+    public List<Token> getParsedTokens() {
         while (!operations.isEmpty()) {
             Token lastToken = operations.peek();
             if (lastToken instanceof OperationToken) {

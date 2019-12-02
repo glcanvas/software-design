@@ -2,7 +2,7 @@ package com.nduginets.softwaredesign.calculator;
 
 import com.nduginets.softwaredesign.calculator.tokenizer.Tokenizer;
 import com.nduginets.softwaredesign.calculator.tokens.Token;
-import com.nduginets.softwaredesign.calculator.visitors.CalculateVisitors;
+import com.nduginets.softwaredesign.calculator.visitors.CalculatorVisitors;
 import com.nduginets.softwaredesign.calculator.visitors.ParserVisitor;
 import com.nduginets.softwaredesign.calculator.visitors.PrintVisitor;
 import com.nduginets.softwaredesign.calculator.visitors.TokenVisitor;
@@ -14,20 +14,20 @@ public class CalcMain {
         String input = "1+2*3";
 
         Tokenizer tokenizer = new Tokenizer();
-        tokenizer.process(input);
+        tokenizer.processInput(input);
 
 
         ParserVisitor parserVisitor = new ParserVisitor();
-        parserVisitor.visit(tokenizer.getTokens());
-        List<Token> polishTokens = parserVisitor.tokens();
+        parserVisitor.iterateOverTokens(tokenizer.getTokens());
+        List<Token> polishTokens = parserVisitor.getParsedTokens();
 
         TokenVisitor printVisitor = new PrintVisitor();
-        printVisitor.visit(polishTokens);
+        printVisitor.iterateOverTokens(polishTokens);
 
-        CalculateVisitors calculateVisitors = new CalculateVisitors();
-        calculateVisitors.visit(polishTokens);
+        CalculatorVisitors calculatorVisitors = new CalculatorVisitors();
+        calculatorVisitors.iterateOverTokens(polishTokens);
         System.out.println();
-        System.out.println(calculateVisitors.getResult());
+        System.out.println(calculatorVisitors.getResult());
 
     }
 }

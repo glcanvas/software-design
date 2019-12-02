@@ -11,32 +11,28 @@ public class Tokenizer {
     private final List<Token> tokens;
 
     public Tokenizer() {
-        this.state = new StartTokenizerState();
+        this.state = new SymbolTokenizerState();
         this.tokens = new ArrayList<>();
     }
 
 
     public void flush() {
-        this.state = new StartTokenizerState();
+        this.state = new SymbolTokenizerState();
         this.tokens.clear();
     }
 
 
-    void process(char c) {
-        state.process(this, c);
+    void processCharacter(char c) {
+        state.startProcessing(this, c);
     }
 
-    public void process(String input) {
+    public void processInput(String input) {
         for (int i = 0; i < input.length(); i++) {
-            this.process(input.charAt(i));
+            this.processCharacter(input.charAt(i));
         }
 
         state.endProcessing(this);
         state = new EofTokenizerState();
-    }
-
-    TokenizerState getState() {
-        return state;
     }
 
     void setState(TokenizerState state) {
