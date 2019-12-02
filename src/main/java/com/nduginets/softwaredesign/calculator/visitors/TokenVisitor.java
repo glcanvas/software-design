@@ -16,14 +16,18 @@ public interface TokenVisitor {
 
     default void iterateOverTokens(List<Token> tokens) {
         for (Token t : tokens) {
-            if (t instanceof BracketToken) {
-                acceptToken((BracketToken) t);
-            }
-            if (t instanceof NumberToken) {
-                acceptToken((NumberToken) t);
-            }
-            if (t instanceof OperationToken) {
-                acceptToken((OperationToken) t);
+            switch (t.getToken()) {
+                case BRACKET:
+                    acceptToken((BracketToken) t);
+                    break;
+                case NUMBER:
+                    acceptToken((NumberToken) t);
+                    break;
+                case OPERATION:
+                    acceptToken((OperationToken) t);
+                    break;
+                default:
+                    throw new IllegalStateException("Unrecognized token type:" + t.getToken());
             }
         }
 

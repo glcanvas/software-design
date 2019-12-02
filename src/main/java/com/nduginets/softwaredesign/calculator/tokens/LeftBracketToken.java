@@ -5,7 +5,6 @@ public class LeftBracketToken extends BracketToken {
         return "Left";
     }
 
-
     @Override
     public BracketType getType() {
         return BracketType.OPEN;

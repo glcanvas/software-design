@@ -16,4 +16,9 @@ public class NumberToken implements Token {
     public int getN() {
         return n;
     }
+
+    public TokenType getToken() {
+        return TokenType.NUMBER;
+    }
+
 }

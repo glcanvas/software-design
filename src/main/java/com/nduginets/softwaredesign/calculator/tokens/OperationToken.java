@@ -41,4 +41,9 @@ public class OperationToken implements Token {
     public static OperationToken div() {
         return new OperationToken(1, (x, y) -> x / y, "/");
     }
+
+    public TokenType getToken() {
+        return TokenType.OPERATION;
+    }
+
 }
