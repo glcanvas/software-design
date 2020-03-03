@@ -89,6 +89,3 @@ public class ApiTest {
         return root.toString();
     }
 }
-/**
- * https://ru.aliexpress.com/item/4000042384097.html?spm=a2g0o.productlist.0.0.7f8434c0qeCyah&algo_pvid=c1b7fa7b-bb66-4a0d-b980-81567d4998cc&algo_expid=c1b7fa7b-bb66-4a0d-b980-81567d4998cc-13&btsid=87b3af84-0e79-40e0-a145-a4b22adbc2b6&ws_ab_test=searchweb0_0,searchweb201602_3,searchweb201603_52
- */

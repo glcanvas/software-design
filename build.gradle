@@ -25,7 +25,10 @@ dependencies {
     compile group: 'org.jboss.resteasy', name: 'resteasy-multipart-provider', version: '3.6.0.Final'
     compile group: 'com.hubspot.jinjava', name: 'jinjava', version: '2.4.1'
     compile group: 'org.jooq', name: 'jooq', version: '3.12.1'
-
+    
+    compile group: 'com.typesafe.akka', name: 'akka-actor_2.12', version: '2.5.21'
+    //implementation "com.typesafe.akka:akka-actor_2.12:2.5.21"
+    
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
     compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.28'
 
