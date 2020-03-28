@@ -96,8 +96,7 @@ public class ActorTest {
     }
 
 
-    private WireMockServer registerClosable(WireMockServer obj) {
+    private void registerClosable(WireMockServer obj) {
         closeables.add(obj);
-        return obj;
     }
 }
